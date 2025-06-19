@@ -11,7 +11,13 @@
 
 #include <stdio.h>
 #include <string>
-#include <pthread.h>
+#ifdef WIN32
+#define strtoll _strtoi64
+#define strtoull _strtoui64
+#define strtof strtod
+#else
+ #include <pthread.h>
+#endif
 #include <errno.h>
 #include "util/atomicops.h"
 #include "util/util.h"
@@ -35,7 +41,7 @@ const VariadicFunction2<bool, StringPiece*, const RE2&, RE2::Arg, RE2::FindAndCo
 
 // This will trigger LNK2005 error in MSVC.
 #ifndef COMPILER_MSVC
-const int RE2::Options::kDefaultMaxMem;  // initialized in re2.h
+//const int RE2::Options::kDefaultMaxMem;  // initialized in re2.h
 #endif  // COMPILER_MSVC
 
 RE2::Options::Options(RE2::CannedOptions opt)

@@ -7,6 +7,10 @@
 #include "re2/prefilter.h"
 #include "re2/prefilter_tree.h"
 #include "re2/re2.h"
+#ifdef WIN32
+#include <stdio.h>
+#define snprintf _snprintf
+#endif
 
 DEFINE_int32(filtered_re2_min_atom_len,
              3,

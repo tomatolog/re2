@@ -5,6 +5,7 @@
 #ifndef RE2_RE2_H
 #define RE2_RE2_H
 
+#define kDefaultMaxMem (8<<20)
 // C++ interface to the re2 regular-expression library.
 // RE2 supports Perl-style regular expressions (with extensions like
 // \d, \w, \s, ...).
@@ -563,7 +564,6 @@ class RE2 {
     // If this happens too often, RE2 falls back on the NFA implementation.
 
     // For now, make the default budget something close to Code Search.
-    static const int kDefaultMaxMem = 8<<20;
 
     enum Encoding {
       EncodingUTF8 = 1,

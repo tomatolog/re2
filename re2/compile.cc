@@ -7,7 +7,10 @@
 // Prog and Inst are defined in prog.h.
 // This file's external interface is just Regexp::CompileToProg.
 // The Compiler class defined in this file is private.
-
+#ifdef WIN32
+#include <stdio.h>
+#define snprintf _snprintf
+#endif
 #include "re2/prog.h"
 #include "re2/re2.h"
 #include "re2/regexp.h"
@@ -503,7 +506,7 @@ int Compiler::RuneByteSuffix(uint8 lo, uint8 hi, bool foldcase, int next) {
     return UncachedRuneByteSuffix(lo, hi, foldcase, next);
   }
 
-  uint64 key = ((uint64)next << 17) | (lo<<9) | (hi<<1) | foldcase;
+  uint64 key = ((uint64)next << 17) | (lo<<9) | (hi<<1) | (foldcase ? 1ULL : 0ULL);
   map<uint64, int>::iterator it = rune_cache_.find(key);
   if (it != rune_cache_.end())
     return it->second;

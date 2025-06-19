@@ -126,6 +126,7 @@
 #endif
 
 
+#ifndef WIN32
 /* ------------------------------------------------------------------ */
 /* ARCHITECTURE SPECIFICS for SPECIAL INSTRUCTIONS.  There is nothing */
 /* in here of use to end-users -- skip to the next section.           */
@@ -4171,6 +4172,7 @@ typedef
                                _qzz_addr, _qzz_len, 0, 0, 0);     \
    }
 
+#endif
 
 /* These requests are for getting Valgrind itself to print something.
    Possibly with a backtrace.  This is a really ugly hack.  The return value

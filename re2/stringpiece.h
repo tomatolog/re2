@@ -23,6 +23,9 @@
 #include <cstddef>
 #include <iosfwd>
 #include <string>
+#ifdef WIN32
+#include <algorithm>
+#endif
 
 namespace re2 {
 

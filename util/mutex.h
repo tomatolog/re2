@@ -14,7 +14,10 @@
 
 namespace re2 {
 
-#define HAVE_PTHREAD 1
+#ifndef WIN32
+ #define HAVE_PTHREAD 1
+ #define HAVE_RWLOCK 1
+#endif
 #define HAVE_RWLOCK 1
 
 #if defined(NO_THREADS)
